@@ -10,7 +10,6 @@ class Photo(models.Model):
     url = models.URLField(blank=False)
     tags = models.ManyToManyField('Tag')
     category = models.ManyToManyField('Category')
-    albums = models.ManyToManyField('Album')
     owner = owner = models.ForeignKey(
         User,
         on_delete='CASCADE',

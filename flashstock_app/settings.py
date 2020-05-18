@@ -120,7 +120,7 @@ ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login'
-LOGIN_REDIRECT_URL = '/sucess'
+LOGIN_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
