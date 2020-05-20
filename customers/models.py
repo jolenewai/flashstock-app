@@ -1,28 +1,22 @@
 from django.db import models
-from django.contrib.auth.models import User
-from person.models import Person
-from photos.models import Photo
+from home.models import Person
 
 # Create your models here.
 
 
-class Collection(models.Model):
-    name = models.CharField(max_length=100, null=False, blank=False)
-    photos = models.ManyToManyField(Photo)
-    created_on = models.DateField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-    owner = models.ForeignKey(
-        Person,
-        on_delete='CASCADE',
-        limit_choices_to={'2', 'Customer'}
-    )
+class Customer(Person):
+    pass
 
 
 class Download(models.Model):
-    photos = models.ManyToManyField(Photo)
-    owner = models.ForeignKey(
-        Person,
-        on_delete='CASCADE',
-        limit_choices_to={'2', 'Customer'}
-    )
+    photo = models.ForeignKey('photos.Photo', on_delete='CASCADE')
+    owner = models.ForeignKey(Customer, on_delete='CASCADE')
+    date_download = models.DateField(auto_now_add=True)
 
+
+class Favourite(models.Model):
+    name = models.CharField(max_length=100, null=False, blank=False)
+    photo = models.ForeignKey('photos.Photo', on_delete='CASCADE')
+    created_on = models.DateField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey(Customer, on_delete='CASCADE')

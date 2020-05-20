@@ -1,20 +1,19 @@
 from django.db import models
-from django.contrib.auth.models import User
-
-# Create your models here.
+from photographers.models import Photographer, Album
 
 
 class Photo(models.Model):
     title = models.CharField(max_length=100, blank=False, null=False)
     desc = models.CharField(max_length=255, blank=False, null=False)
     url = models.URLField(blank=False)
+    costs = models.FloatField(blank=False)
     tags = models.ManyToManyField('Tag')
     category = models.ManyToManyField('Category')
-    owner = owner = models.ForeignKey(
-        User,
-        on_delete='CASCADE',
-        limit_choices_to={'1': 'Photographer'}
+    owner = models.ForeignKey(
+        Photographer,
+        on_delete='CASCADE'
     )
+    album = models.ManyToManyField(Album)
 
     def __str__(self):
         return self.id + '_' + self.title
