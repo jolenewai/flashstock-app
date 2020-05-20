@@ -3,9 +3,9 @@ from .models import Photographer
 from .forms import PhotographerForm
 
 
-def sign_up(request):
+def create_profile(request):
     form = PhotographerForm()
-    return render(request, 'photographers/signup.template.html', {
+    return render(request, 'photographers/create_profile.template.html', {
         'form': form
     })
 
